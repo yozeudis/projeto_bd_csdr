@@ -5,3 +5,13 @@ CREATE TABLE id_consentimento_usuario(
  aceito boolean not null,
  data_consentimento  timestamp
 );
+
+CREATE TABLE diagnostico_compatibilidade(
+id_diagnostico_compatibilidade SERIAL PRIMARY KEY,
+usuario_id int not null,
+dispositivo_id int not null,
+aplicativo_id int not null,
+status varchar (255) not null,
+detalhes_falhas json,
+executado_em timestamp
+);

@@ -22,7 +22,6 @@ VALUES ('12345678-abcd-ef01-2345-6789abcdef01', 3, FALSE);
 
 SELECT * FROM consentimento_usuario;
 
-
 CREATE TABLE diagnostico_compatibilidade(
 id_diagnostico_compatibilidade SERIAL PRIMARY KEY,
 usuario_id int not null,
@@ -31,4 +30,23 @@ aplicativo_id int not null,
 status varchar (255) not null,
 detalhes_falhas json,
 executado_em timestamp
+);
+
+-- Exemplo 1: Diagnóstico com SUCESSO (JSON vazio ou nulo)
+INSERT INTO diagnostico_compatibilidade (usuario_id, dispositivo_id, aplicativo_id, status, detalhes_falhas)
+VALUES (101, 5, 12, 'Sucesso', '{}');
+
+-- Exemplo 2: Diagnóstico com ALERTA (Falha parcial / Memória RAM insuficiente)
+INSERT INTO diagnostico_compatibilidade (usuario_id, dispositivo_id, aplicativo_id, status, detalhes_falhas)
+VALUES (102, 8, 12, 'Atencao', '{"componente": "RAM", "requerido": "8GB", "detectado": "4GB", "mensagem": "Desempenho pode ser afetado"}');
+
+-- Exemplo 3: Diagnóstico com FALHA CRÍTICA (Versão do SO incompatível)
+INSERT INTO diagnostico_compatibilidade (usuario_id, dispositivo_id, aplicativo_id, status, detalhes_falhas)
+VALUES (103, 3, 15, 'Incompativel', '{"erro": "SO_DESATUALIZADO", "os_atual": "Android 9", "os_minimo": "Android 11", "bloqueante": true}');
+
+
+SELECT * FROM consentimento_usuario;
+
+
+
 );

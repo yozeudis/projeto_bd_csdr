@@ -188,25 +188,4 @@ CREATE TABLE diagnostico_compatibilidade(
   constraint fk_aplicativo foreign key (fk_aplicativo) references aplicativo (id_aplicativo)
 );
 
-CREATE TABLE notificacao (
-  id_notificacao SERIAL PRIMARY KEY,
-  fk_usuario   int not null,
-  titulo      varchar(150) not null,
-  mensagem     text not null,
-  lida         boolean,
-  criada_em    timestamp,
-  constraint fk_usuario foreign key (fk_usuario) references usuario (id_usuario)
-);
 
-INSERT INTO diagnostico_compatibilidade (fk_usuario, fk_dispositivo, fk_aplicativo, status, detalhes_falhas, executado_em)
-VALUES (7, 1, 1, 'Compatível', NULL, NOW());
-
-
-INSERT INTO diagnostico_compatibilidade (fk_usuario, fk_dispositivo, fk_aplicativo, status, detalhes_falhas, executado_em)
-VALUES (8, 2, 3, 'Incompatível', 'Memória RAM insuficiente (Mínimo: 8GB, Disponível: 4GB).', NOW());
-
-
-INSERT INTO diagnostico_compatibilidade (fk_usuario, fk_dispositivo, fk_aplicativo, status, detalhes_falhas, executado_em)
-VALUES (9, 3, 2, 'Incompatível', 'Versão do Android não homologada para este aplicativo.', NOW());
-
-select * from diagnostico_compatibilidade;

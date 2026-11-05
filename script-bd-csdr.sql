@@ -188,4 +188,25 @@ CREATE TABLE diagnostico_compatibilidade(
   constraint fk_aplicativo foreign key (fk_aplicativo) references aplicativo (id_aplicativo)
 );
 
+CREATE TABLE consentimento_usuario(
+  id_consentimento_usuario SERIAL PRIMARY KEY,
+  fk_usuario  int not null,
+  fk_termo_lgpd  int not null,
+  aceito  boolean not null,
+  data_consentimento  timestamp,
+  constraint fk_usuario foreign key (fk_usuario) references usuario (id_usuario),
+  constraint fk_termo_lgpd foreign key (fk_termo_lgpd) references termo_lgpd (id_termo_lgpd)
+);
+
+INSERT INTO consentimento_usuario (fk_usuario, fk_termo_lgpd, aceito) 
+VALUES (9, 1, true);
+
+INSERT INTO consentimento_usuario (fk_usuario, fk_termo_lgpd, aceito) 
+VALUES (7, 2, false);
+
+INSERT INTO consentimento_usuario (fk_usuario, fk_termo_lgpd, aceito) 
+VALUES (8, 3, true);
+
+select * from consentimento_usuario;
+
 
